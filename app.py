@@ -49,18 +49,6 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# Navbar (You can style this as needed or replace it with your own)
-st.markdown("""
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand" href="/">
-            <img src="https://yourdomain.com/static/images/navbar-logo.svg" class="navbar-logo" alt="Navbar Logo" />
-        </a>
-        <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link active" href="/">HOME</a>
-            <a class="nav-item nav-link" href="about-us">ABOUT US</a>
-        </div>
-    </nav>
-    """, unsafe_allow_html=True)
 
 # Homepage section (Main content for the homepage)
 st.markdown("""
