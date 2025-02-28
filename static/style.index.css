@@ -1,0 +1,211 @@
+* {
+  position: relative;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.homepage-start {
+  background-image: url("./images/homepage-background.svg");
+  width: 100vw;
+  height: 90vh;
+}
+
+.navbar-logo {
+  width: 25vw;
+  margin-top: 0.4vw;
+}
+
+.navbar {
+  padding-left: 3vw;
+  height: 14vh;
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Navbar scrolled effect */
+.navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.8); /* Change background color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow */
+}
+
+.navbar-nav {
+  padding-left: 43vw;
+  font-family: "Inter";
+  font-weight: 800;
+  font-size: 2vw;
+  gap: 5vw;
+}
+
+.nav-item {
+  color: #9fb6d3;
+}
+
+.active-link {
+  color: black !important; /* Make the active link text black */
+  font-weight: 800; /* Optional: Make the active link text bold */
+}
+
+.homepage-jantung {
+  width: 80vw;
+  height: 60vh;
+  margin-left: -12vw;
+  margin-top: 10vh;
+}
+
+.homepage-cardiovascular-prediction {
+  font-family: "Inter";
+  font-weight: 750;
+  font-size: 4vw;
+  margin-left: 43vw;
+  margin-top: -45vh;
+}
+
+.homepage-check-heart {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 2.5vw;
+  margin-left: 42.8vw;
+}
+
+.homepage-button-start-check {
+  background-color: #2f385f;
+  color: white;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 2.4vw;
+  width: 18vw;
+  height: 10vh;
+  border-radius: 1.5vw;
+  margin-left: 43vw;
+  margin-top: 2vh;
+}
+
+#prediction-section {
+  background-image: url("./images/homepage-background.svg");
+  width: 100vw;
+  height: 100vh;
+}
+
+.input-data {
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 3vw;
+  margin-top: 10vh;
+}
+
+.input-text-container {
+  display: flex;
+  justify-content: center;
+}
+
+.input-form {
+  margin-top: 5vh;
+  margin-left: 5vw;
+}
+
+input,
+label {
+  display: block;
+  margin-bottom: 1vh;
+  font-family: "Inter";
+  font-size: 2vw;
+  font-weight: 350;
+}
+
+input {
+  background-color: #d9d9d9;
+  border-radius: 1vw;
+  width: 40vw;
+  padding-left: 0.5vw;
+}
+
+.input-kanan {
+  margin-left: 47vw;
+  margin-top: -50.4vh;
+}
+
+.cholesterol-input-small {
+  font-size: 1.2vw;
+  font-weight: 500;
+  margin-top: -2vh;
+}
+
+.cholesterol-input-big {
+  margin-top: -2.2vh;
+}
+
+.gluc-input-small {
+  font-size: 1.2vw;
+  font-weight: 500;
+  margin-top: -2vh;
+}
+
+.gluc-input-big {
+  margin-top: -2.2vh;
+}
+
+.predict-button {
+  width: 18vw;
+  height: 9vh;
+  background-color: #2f385f;
+  color: white;
+  font-weight: 700;
+  font-family: "Inter";
+  margin-left: 34vw;
+  margin-top: 3vh;
+}
+
+.result-container {
+  display: flex;
+  justify-content: center;
+  background-image: url("./images/homepage-background.svg");
+  height: 90vh;
+  width: 100vw;
+}
+
+.result-prediction-nilai {
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 12vw;
+  text-align: center;
+  margin-top: 18vh;
+}
+
+.result-hiasan-kiri {
+  margin-top: -60vh;
+  margin-left: 2vw;
+}
+
+.result-hiasan-kanan {
+  margin-top: -60vh;
+}
+
+.result-penjelasan {
+  font-family: "Inter";
+  font-size: 4vw;
+  font-weight: 400;
+  text-align: center;
+  margin-top: -15vh;
+}
+
+.about-us-container {
+  display: flex;
+  justify-content: center;
+  background-image: url("./images/homepage-background.svg");
+  width: auto;
+  height: 125vh;
+}
+
+.about-us-tulisan-about-us {
+  text-align: center;
+  font-family: "Inter";
+  font-size: 4vw;
+  margin-top: 5vh;
+  font-weight: 700;
+}
+
+.about-us-tulisan-penjelasan {
+  font-family: "Inter";
+  text-align: center;
+}
