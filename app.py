@@ -53,7 +53,6 @@ st.markdown("""
 # Homepage section (Main content for the homepage)
 st.markdown("""
     <div class="homepage-start">
-        <img src="https://yourdomain.com/static/images/homepage-jantung.svg" class="homepage-jantung" alt="Homepage Jantung" />
         <h1 class="homepage-cardiovascular-prediction">
             Cardiovascular<br />Prediction
         </h1>
