@@ -1,46 +1,38 @@
 from flask import Flask, render_template, request
 from joblib import load
 import pandas as pd
+import streamlit as st
 
-app = Flask(__name__)
-
-# Load the trained model and scaler
+# Load the trained model and scaler (make sure the files are in the correct path)
 model = load('model.joblib')
 scaler = load('scaler.joblib')
 
-@app.route('/')
-def home():
-    return render_template('index.html', current_page='home')  # Your HTML form
+# Streamlit interface
+st.title("Cardiovascular Disease Prediction")
 
-@app.route('/input')
-def input():
-    return render_template('input.html')
+# Collect user input using Streamlit widgets
+age = st.number_input("Age", min_value=0)
+weight = st.number_input("Weight (in kg)", min_value=0.0, step=0.1)
+ap_hi = st.number_input("Systolic Blood Pressure (ap_hi)", min_value=0)
+ap_lo = st.number_input("Diastolic Blood Pressure (ap_lo)", min_value=0)
+cholesterol = st.selectbox("Cholesterol Level", options=[1, 2, 3])
+gluc = st.selectbox("Glucose Level", options=[1, 2, 3])
 
-@app.route('/about-us')
-def aboutus():
-    return render_template('about-us.html', current_page='about-us')
-
-@app.route('/predict', methods=['POST'])
-def predict():
-    # Get input from user form (adjust based on form fields)
-    age = int(request.form['age'])
-    weight = float(request.form['weight'])
-    ap_hi = int(request.form['ap_hi'])  # Systolic blood pressure
-    ap_lo = int(request.form['ap_lo'])  # Diastolic blood pressure
-    cholesterol = int(request.form['cholesterol'])  # Cholesterol level
-    gluc = int(request.form['gluc'])  # Glucose level
-
-    # Create a DataFrame for prediction (make sure these are the same columns as the training data)
+# Prediction button
+if st.button("Predict"):
+    # Prepare input data for prediction
     input_data = pd.DataFrame([[age, weight, ap_hi, ap_lo, cholesterol, gluc]],
                               columns=['age', 'weight', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc'])
 
-    # Apply the same scaling that was used during training (only for the columns that remain)
-    input_data = scaler.transform(input_data)  # Scale the necessary features
+    # Apply the same scaling that was used during training
+    input_data = scaler.transform(input_data)
 
-    # Predict using the model with scaled data
+    # Make prediction using the model
     prediction = model.predict(input_data)
-    prediction = prediction[0]
-  
-    return render_template('result.html', prediction=prediction)
-
+    
+    # Display the result
+    if prediction[0] == 1:
+        st.write("You have a **high risk** of cardiovascular disease.")
+    else:
+        st.write("You have a **low risk** of cardiovascular disease.")
 
