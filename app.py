@@ -49,7 +49,6 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-
 # Homepage section (Main content for the homepage)
 st.markdown("""
     <div class="homepage-start">
@@ -65,33 +64,46 @@ st.markdown("""
 # "Start Check" button that links to the input page
 if st.button('Start Check'):
     st.write("Redirecting to the input page...")
-    # You can directly call the input form function here or navigate to another page.
 
-    # Alternatively, show the input form directly in the same page
-    st.header("Enter Your Details")
+# Define input fields and preserve them using session_state
+if 'age' not in st.session_state:
+    st.session_state.age = 0
+if 'weight' not in st.session_state:
+    st.session_state.weight = 0.0
+if 'ap_hi' not in st.session_state:
+    st.session_state.ap_hi = 0
+if 'ap_lo' not in st.session_state:
+    st.session_state.ap_lo = 0
+if 'cholesterol' not in st.session_state:
+    st.session_state.cholesterol = 1
+if 'gluc' not in st.session_state:
+    st.session_state.gluc = 1
 
-    # Collect user input using Streamlit widgets
-    age = st.number_input("Age", min_value=0)
-    weight = st.number_input("Weight (in kg)", min_value=0.0, step=0.1)
-    ap_hi = st.number_input("Systolic Blood Pressure (ap_hi)", min_value=0)
-    ap_lo = st.number_input("Diastolic Blood Pressure (ap_lo)", min_value=0)
-    cholesterol = st.selectbox("Cholesterol Level", options=[1, 2, 3])
-    gluc = st.selectbox("Glucose Level", options=[1, 2, 3])
+# Collect user input using Streamlit widgets and store the values in session_state
+st.header("Enter Your Details")
 
-    # Prediction button
-    if st.button("Predict"):
-        # Prepare the input data for prediction
-        input_data = pd.DataFrame([[age, weight, ap_hi, ap_lo, cholesterol, gluc]],
-                                  columns=['age', 'weight', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc'])
+st.session_state.age = st.number_input("Age", min_value=0, value=st.session_state.age)
+st.session_state.weight = st.number_input("Weight (in kg)", min_value=0.0, step=0.1, value=st.session_state.weight)
+st.session_state.ap_hi = st.number_input("Systolic Blood Pressure (ap_hi)", min_value=0, value=st.session_state.ap_hi)
+st.session_state.ap_lo = st.number_input("Diastolic Blood Pressure (ap_lo)", min_value=0, value=st.session_state.ap_lo)
+st.session_state.cholesterol = st.selectbox("Cholesterol Level", options=[1, 2, 3], index=st.session_state.cholesterol - 1)
+st.session_state.gluc = st.selectbox("Glucose Level", options=[1, 2, 3], index=st.session_state.gluc - 1)
 
-        # Apply the same scaling that was used during training
-        input_data = scaler.transform(input_data)
+# Prediction button
+if st.button("Predict"):
+    # Prepare the input data for prediction
+    input_data = pd.DataFrame([[st.session_state.age, st.session_state.weight, st.session_state.ap_hi, 
+                                st.session_state.ap_lo, st.session_state.cholesterol, st.session_state.gluc]],
+                              columns=['age', 'weight', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc'])
 
-        # Make prediction using the model
-        prediction = model.predict(input_data)
-        
-        # Display the result
-        if prediction[0] == 1:
-            st.write("You have a **high risk** of cardiovascular disease.")
-        else:
-            st.write("You have a **low risk** of cardiovascular disease.")
+    # Apply the same scaling that was used during training
+    input_data = scaler.transform(input_data)
+
+    # Make prediction using the model
+    prediction = model.predict(input_data)
+    
+    # Display the result
+    if prediction[0] == 1:
+        st.write("You have a **high risk** of cardiovascular disease.")
+    else:
+        st.write("You have a **low risk** of cardiovascular disease.")
